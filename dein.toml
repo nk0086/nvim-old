@@ -1,0 +1,50 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+hook_add = '''
+   let g:neosnippet#snippets_directory='~/.config/nvim/neosnippet-snippets/'
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+hook_add = '''
+    set updatetime=300
+    if has("patch-8.1.1564")
+	set signcolumn=number
+    else
+	set signcolumn=yes
+    endif
+
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-refereces)
+
+'''
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+[[plugins]]
+repo = 'qnighy/satysfi.vim'
+
+[[plugins]]
+repo = 'tyru/eskk.vim'
+hook_add = '''
+    let g:eskk#directory = "~/.config/eskk"
+    let g:eskk#dictionary = { 'path': "~/.config/eskk/my_jisyo", 'sorted': 1, 'encoding': 'utf-8',}
+    let g:eskk#large_dictionary = {'path': "~/.config/eskk/SKK-JISYO.L", 'sorted': 1, 'encoding': 'euc-jp',}
+    let g:eskk#egg_like_newline = 1
+    let g:eskk#marker_henkan_select = "[選択]"
+    let g:eskk#marker_okuri = "[送り]"
+    let g:eskk#marker_jisyo_touroku = "[辞書]"
+'''

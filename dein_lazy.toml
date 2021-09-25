@@ -1,0 +1,45 @@
+[[plugins]]
+on_ft = ['rust']
+repo = 'rust-lang/rust.vim'
+hook_add = '''
+    let g:rustfmt_autosave = 1 
+'''
+
+[[plugins]]
+on_ft = ['rust', 'python']
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+hook_add = '''
+    let g:LanguageClient_serverCommands = {
+	\ 'rust': ['rust_analyzer'],  
+	\ 'python': ['/usr/local/bin/pyls'],
+	\}
+
+    nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+'''
+
+[[plugins]]
+on_ft = ['rust']
+repo = 'fannheyward/coc-rust-analyzer'
+
+[[plugins]]
+on_ft = ['r']
+repo = 'jalvesaq/Nvim-R'
+
+[[plugins]]
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+repo = 'iamcco/markdown-preview.nvim'
+build = '''
+cd app & yarn install
+'''
+hook_add = '''
+let g:mkdp_command_for_global = 1
+'''
+
+[[plugins]]
+on_ft = ['tex']
+repo = 'latex-lsp/texlab'
+

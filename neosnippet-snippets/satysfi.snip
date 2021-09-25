@@ -1,0 +1,51 @@
+snippet slide-template
+        @require: class-slydifi/theme/arctic
+        document'<
+            ${0}
+        >
+
+snippet title 
+abbr    make-title(||) 
+options head
+        +make-title(|
+                title = {|${0}|};
+                author = {
+                        | ${1}
+                |};
+                date = {||};
+        |);
+
+snippet frame    
+abbr    +frame{}<>        
+options     head
+        +frame{${0}}<
+                ${1}
+        >
+
+snippet paragraph
+abbr    +p{}      
+options     head
+        +p{
+                ${0}
+        }
+
+snippet section
+abbr    +section{}<>
+options     head
+        +section{|${0}|}<
+                ${1}
+        >
+
+snippet listing
+abbr    +listing{} 
+options     head
+        +listing{
+                ${0:TARGET}
+        }
+
+snippet     enumerate
+abbr        +enumerate{}
+options     head
+	+enumerate{
+		${0}
+	}
