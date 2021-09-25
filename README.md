@@ -1,4 +1,4 @@
-# nvim_settings
+# nvim
 neovim 用の設定ファイルです。  
 パスとかはいい感じに変更してください。
 ## init.vim
