@@ -63,37 +63,32 @@ tnoremap <C-t> <C-\><C-n><C-w>k
 nnoremap <C-t> <C-w>ji
 tnoremap jj <C-\><C-n>
 
+"function {{{
 function! MakeSnippet() abort
-    execute '!cargo snippet % > ~/.config/nvim/neosnippet-snippets/rust/%<.snip <CR>'
+    :!cargo snippet % > ~/.config/nvim/neosnippet-snippets/rust/%<.snip
 endfunction
 command! MakeSnippet call MakeSnippet()
 
-"引数を渡して、test or submit を決める
-"デフォルトは test
-function! SubmitCode() abort
-    :! cargo compete t %< <CR>
-    :! cargo compete s %< <CR>
+command! -nargs=? Sub call Submit(<f-args>)
+function! Submit(...) abort
+    if a:0 >= 1
+	:! python3 $HOME/program/rust/auto_test/submit.py %<
+    else
+	:! cargo compete s %<
+    end
 endfunction
-command! SubmitCode call SubmitCode()
 
-filetype on
-augroup atcoder_judge
-    autocmd!
-    autocmd FileType rust nmap <buffer> <F4> :! cargo snippet % > ~/.config/nvim/neosnippet-snippets/rust/%<.snip <CR>
-    autocmd FileType rust nmap <buffer> <F5> :! python3 $HOME/program/rust/auto_test/test.py %< <CR>
-    autocmd FileType rust nmap <buffer> <F6> :! python3 $HOME/program/rust/auto_test/submit.py %< <CR>
-    autocmd FileType rust nmap <buffer> <F7> :! cargo compete t %< <CR>
-    autocmd FileType rust nmap <buffer> <F8> :! cargo compete s %< <CR>
+command! -nargs=? Test call Test(<f-args>)
+function! Test(...) abort
+    if a:0 >= 1
+	:! python3 $HOME/program/rust/auto_test/test.py %<
+    else 
+	:! cargo compete t %<
+    end
+endfunction
+"}}}
 
-augroup END
-
+"eskk settings {
 imap jk <Plug>(eskk:toggle)
 cmap jk <Plug>(eskk:toggle)
-
-"filetype on
-"augroup edit_text 
-"    autocmd!
-"    autocmd FileType markdown nmap <C-t> :! pandoc % -f markdown -o %<.pdf --pdf-engine=lualatex <CR>
-"    autocmd FileType plaintex,tex nmap <C-p> :! latexmk -pvc % <CR>
-"augroup END
-
+"}
