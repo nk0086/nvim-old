@@ -30,16 +30,6 @@ on_ft = ['r']
 repo = 'jalvesaq/Nvim-R'
 
 [[plugins]]
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
-repo = 'iamcco/markdown-preview.nvim'
-build = '''
-cd app & yarn install
-'''
-hook_add = '''
-let g:mkdp_command_for_global = 1
-'''
-
-[[plugins]]
 on_ft = ['tex']
 repo = 'latex-lsp/texlab'
 

@@ -49,7 +49,8 @@ set wildmenu
 set noswapfile
 
 syntax enable
-colorscheme iceberg
+"colorscheme iceberg
+colorscheme zellner
 
 let mapleader = "\<Space>"
 
@@ -72,7 +73,11 @@ command! MakeSnippet call MakeSnippet()
 command! -nargs=? Sub call Submit(<f-args>)
 function! Submit(...) abort
     if a:0 >= 1
-	:! python3 $HOME/program/rust/auto_test/submit.py %<
+	if a:1 == "go"
+	    :! acc s -s -- -y
+	else 
+	    :! python3 $HOME/program/rust/auto_test/submit.py %<
+	endif
     else
 	:! cargo compete s %<
     end
@@ -81,7 +86,11 @@ endfunction
 command! -nargs=? Test call Test(<f-args>)
 function! Test(...) abort
     if a:0 >= 1
-	:! python3 $HOME/program/rust/auto_test/test.py %<
+	if a:1 == "go"
+	    :! oj t -c "go run main.go"
+	else 
+	    :! python3 $HOME/program/rust/auto_test/test.py %<
+	endif
     else 
 	:! cargo compete t %<
     end
